@@ -6,6 +6,9 @@
     font-weight: bold;
 }
 
+.topright { position: absolute; top: 5px; right: 5px; text-align: right; }
+  .bottomright { position: absolute; bottom: 5px; right: 5px; text-align: right; }
+
 .jumbotron {
   height: 50vh;
   padding: 5em inherit;
