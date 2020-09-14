@@ -21,6 +21,7 @@
         <a class="py-2 d-none d-md-inline-block" href="products.html">Productos</a>
         <a class="py-2 d-none d-md-inline-block" href="sell.html">Vender</a>
         <a class="py-2 d-none d-md-inline-block" href="cart.html">Mi carrito</a>
+        <p id="nombreUsuarioNav" class="topright" style="color: white;"></p> 
       </div>
     </nav>
     <main role="main" class="pb-5">
@@ -33,10 +34,10 @@
               <div class="col text-right">
                   <div class="btn-group btn-group-toggle mb-4" data-toggle="buttons">
                       <label class="btn btn-light active" id="sortAsc" >
-                          <input type="radio" name="options" autocomplete="off" checked>Mayor a menor
+                          <input type="radio" name="options" autocomplete="off" checked>Más barato a caro
                       </label>
                       <label class="btn btn-light" id="sortDesc" >
-                          <input type="radio" name="options" autocomplete="off">Menor a mayor
+                          <input type="radio" name="options" autocomplete="off">Más caro a barato
                       </label>
                       <label class="btn btn-light" id="sortBySold" >
                           <input type="radio" name="options" autocomplete="off"><i class="fas fa-sort-amount-down mr-1"></i>Vendidos
@@ -49,7 +50,7 @@
               <div class="col-md-6 col-sm-12 mb-1 container">
                 <div class="row container p-0 m-0">
                   <div class="col">
-                    <p class="font-weight-normal text-right my-2">Ordenar por precio</p>
+                    <p class="font-weight-normal text-right my-2">Rango de precio</p>
                   </div>
                   <div class="col">
                     <input class="form-control" type="number" placeholder="min." id="rangeFilterCountMin">

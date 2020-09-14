@@ -23,6 +23,7 @@
       <a class="py-2 d-none d-md-inline-block" href="products.html">Productos</a>
       <a class="py-2 d-none d-md-inline-block" href="sell.html">Vender</a>
       <a class="py-2 d-none d-md-inline-block" href="cart.html">Mi carrito</a>
+      <p id="nombreUsuarioNav" class="topright" style="color:white;"></p> 
     </div>
   </nav>
   <main role="main">
@@ -59,9 +60,26 @@
           <div class="row text-center text-lg-left pt-2" id="productImagesGallery">
           </div>
         </dd>
+
+        <dt>Productos relacionados</dt>
+        <dd>
+          
+        </dd>
       </dl>
       <a type="button" class="btn btn-light btn-lg btn-block" href="products.html">Ver productos</a>
     </div>
+    
+    <div class="col-lg-3 col-md-4 col-6"><h2>Comentarios</h2>
+      
+        <textarea id="title" type="text "rows="2" cols="100" onkeyup="Allow()" placeholder="Escribe un comentario..."></textarea>
+      <p>Puntuación:<input type="number" id="score" style="width:50px;" min="1" max="5" /></p>
+      <input class="button" type="submit" value="Comentar" onclick="insert()" style="width:90px;" />
+      </div>
+    </br>
+      <div id="display"></div>
+
+      <div id="comentariosJson"></div>
+
   </main>
   <footer class="text-muted">
     <div class="container">

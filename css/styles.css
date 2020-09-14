@@ -6,6 +6,10 @@
     font-weight: bold;
 }
 
+.nombreUsuarioComentario{
+  color: lightseagreen;
+}
+ 
 .topright { position: absolute; top: 5px; right: 5px; text-align: right; }
   .bottomright { position: absolute; bottom: 5px; right: 5px; text-align: right; }
 
