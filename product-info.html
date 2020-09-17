@@ -22,8 +22,18 @@
       <a class="py-2 d-none d-md-inline-block" href="categories.html">Categorías</a>
       <a class="py-2 d-none d-md-inline-block" href="products.html">Productos</a>
       <a class="py-2 d-none d-md-inline-block" href="sell.html">Vender</a>
-      <a class="py-2 d-none d-md-inline-block" href="cart.html">Mi carrito</a>
-      <p id="nombreUsuarioNav" class="topright" style="color:white;"></p> 
+     <!--- <a class="py-2 d-none d-md-inline-block" href="cart.html">Mi carrito</a> -->
+      <a class="nav-link dropdown-toggle" href="#" id="nombreUsuarioNav" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      </a>
+      <div class="dropdown-menu shadow-lg" aria-labelledby="nombreUsuarioNav">
+        <a class="dropdown-item" href="cart.html"><img src="png/cart-2x.png" alt="cartIcon">  Mi carrito</a>
+        <a class="dropdown-item" href="my-profile.html"> <img src="png/person-2x.png" alt="profileIcon"> Mi perfil</a>
+        <div class="dropdown-divider"></div>
+        <a  class="dropdown-item bg-danger text-white" onclick=borrarUsuario() href="index.html">
+          <img src="img/account-logout-2x.png" alt="logOutIcon">Cerrar sesión</a>
+
+    </div>
+
     </div>
   </nav>
   <main role="main">
@@ -55,15 +65,31 @@
           <p id="productSoldCount"></p>
         </dd>
 
-        <dt>Imágenes ilustrativas</dt>
+        <dt>Imagenes</dt>
         <dd>
-          <div class="row text-center text-lg-left pt-2" id="productImagesGallery">
+          <div id="carouselExampleIndicators" class="carousel slide" style="max-width: 30rem;" data-ride="carousel">
+            <ol class="carousel-indicators" id="carrousel">
+              
+            </ol>
+            <div class="carousel-inner" id="productImagesGallery">
+              
+            </div>
+            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="sr-only">Anterior</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="sr-only">Siguiente</span>
+            </a>
           </div>
         </dd>
-
+        <hr class="my-3">
         <dt>Productos relacionados</dt>
         <dd>
-          
+          <div class="card-deck mb-3" style="max-width: 38rem;" id="productosRelacionados">
+
+          </div>
         </dd>
       </dl>
       <a type="button" class="btn btn-light btn-lg btn-block" href="products.html">Ver productos</a>
@@ -73,7 +99,7 @@
       
         <textarea id="title" type="text "rows="2" cols="100" onkeyup="Allow()" placeholder="Escribe un comentario..."></textarea>
       <p>Puntuación:<input type="number" id="score" style="width:50px;" min="1" max="5" /></p>
-      <input class="button" type="submit" value="Comentar" onclick="insert()" style="width:90px;" />
+      <input class="btn btn-dark" type="submit" value="Comentar" onclick="insert()"  />
       </div>
     </br>
       <div id="display"></div>

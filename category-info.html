@@ -22,8 +22,15 @@
       <a class="py-2 d-none d-md-inline-block" href="categories.html">Categorías</a>
       <a class="py-2 d-none d-md-inline-block" href="products.html">Productos</a>
       <a class="py-2 d-none d-md-inline-block" href="sell.html">Vender</a>
-      <a class="py-2 d-none d-md-inline-block" href="cart.html">Mi carrito</a>
-      <p id="nombreUsuarioNav" class="topright" style="color: white;"></p> 
+      <a class="nav-link dropdown-toggle" href="#" id="nombreUsuarioNav" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      </a>
+      <div class="dropdown-menu shadow-lg" aria-labelledby="nombreUsuarioNav">
+        <a class="dropdown-item" href="cart.html"><img src="png/cart-2x.png" alt="cartIcon">  Mi carrito</a>
+        <a class="dropdown-item" href="my-profile.html"> <img src="png/person-2x.png" alt="loginIcon"> Mi perfil</a>
+        <div class="dropdown-divider"></div>
+        <a  class="dropdown-item bg-danger text-white"  onclick=borrarUsuario() href="index.html"><img src="img/account-logout-2x.png" alt="logOutIcon">  Cerrar sesión</a>
+
+    </div>
     </div>
   </nav>
   <main role="main">

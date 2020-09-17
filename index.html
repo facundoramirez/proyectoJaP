@@ -46,28 +46,38 @@
     </div>
   
     <div class="container">
+      <div class="row">
       <label for="uname"><b>Nombre de usuario</b></label>
       <input id=nombreUsuarioNav type="text" placeholder="Ingresar usuario" name="uname" required>
   
       <label for="psw"><b>Contraseña</b></label>
       <input type="password" placeholder="*******" name="psw" required>
   
-      <button onclick="setName()" type="submit">Entrar</button>
+      <button class="btn btn-lg btn-primary btn-block" onclick="setName()" type="submit">Entrar</button>
       <label>
         <input type="checkbox" checked="checked" name="remember"> Recordarme
       </label>
     </div>
+    
   
-    <div class="container" style="background-color:#f1f1f1">
-      <button type="button" class="cancelbtn">Cancelar</button>
-      <span class="psw">¿Olvidaste tu <a href="#">contraseña?</a></span>
-      
+    
+      <div class="row">
+        <div class="col-7">
+      <button type="button" class="btn btn-danger" style='width:90px; height:45px'>Cancelar</button>
     </div>
+    <div class="col">
+      <span class="psw float-right">¿Olvidaste tu <a href="#">contraseña?</a></span>
+    </div>
+  </div>
+  </div>
+    
     <p class="float-left">
       <a href="principal.html">Continuar sin ingresar</a>
     </p>
   </form>
-  <img src="img/login.png"> 
+  
+  <img src="img/login.png" class="float-right"> 
+
   
 
   <script src="js/init.js"></script>

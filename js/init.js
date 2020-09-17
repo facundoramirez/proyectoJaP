@@ -40,11 +40,16 @@ var getJSONData = function(url){
     });
 }
 
-
+function borrarUsuario(){
+  localStorage.removeItem("usuario");
+}
 //Función que se ejecuta una vez que se haya lanzado el evento de
 //que el documento se encuentra cargado, es decir, se encuentran todos los
 //elementos HTML presentes.
 document.addEventListener("DOMContentLoaded", function(e){
   
-  document.getElementById("nombreUsuarioNav").innerHTML +=" "+ localStorage.getItem("usuario");
+  document.getElementById("nombreUsuarioNav").innerHTML +=" " + localStorage.getItem("usuario");
+  document.getElementById("alertNombreUsuario").innerHTML +="  " + localStorage.getItem("usuario");
+ 
+
 });

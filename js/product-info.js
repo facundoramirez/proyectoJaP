@@ -3,43 +3,66 @@ var titles = [];
 var date = new Date();
 var titleInput = document.getElementById("title");
 var messageBox = document.getElementById("display");
+
+
 function showImagesGallery(array){
 
-    let htmlContentToAppend = "";
+    let html = "";
+    let htmlImages ="";
 
     for(let i = 0; i < array.length; i++){
         let imageSrc = array[i];
 
-        htmlContentToAppend += `
-        <div class="col-lg-3 col-md-4 col-6">
-            <div class="d-block mb-4 h-100">
-                <img class="img-fluid img-thumbnail" src="` + imageSrc + `" alt="">
-            </div>
-        </div>
-        `
-
-        document.getElementById("productImagesGallery").innerHTML = htmlContentToAppend;
+        if (i==0){
+            html+=`<li data-target="#carouselExamleIndicators" data-slide-to-"`+i+`" class="active"></li>`
+            htmlImages += `
+            <div class="carousel-item active">
+            <img src="`+imageSrc+`" class="d-block w-100">
+            </div>`
+        } else {
+            html +=`<li data-target="#carouselExamleIndicators" data-slide-to-"`+i+`"</li>`
+            htmlImages +=`
+            <div class="carousel-item">
+            <img src="`+imageSrc+`" class="d-block w-100">
+            </div>`
+            
+        }
     }
+    document.getElementById("productImagesGallery").innerHTML = htmlImages;
+    document.getElementById("carrousel").innerHTML = html;
+
+}
+
+
+//productos relacionados
+
+function relatedProducts(relacionados){
+    getJSONData(PRODUCTS_URL).then(function(resultObj){
+        let html="";
+        if (resultObj.status === "ok"){
+            let todosLosProductos= resultObj.data;
+            for (let i=0; i<relacionados.length; i++){
+                let relacionadoPosicion=relacionados[i];
+                let related = todosLosProductos[relacionadoPosicion];
+                html += `
+                <div class="card">
+    <img src="`+related.imgSrc+`" class="card-img-top">
+    <div class="card-body">
+      <h5 class="card-title">`+related.name+`</h5>
+      <p class="card-text">`+related.description+`</p>
+      <div>
+      <a href="#" class="card-link">Ver</a>
+      </div>
+    </div>
+  </div>
+  `
+            }
+            document.getElementById("productosRelacionados").innerHTML = html;
+        }
+    });
 }
 
 
-function showRaiting(){
-    let score = videogame.rating;
-    let stars ="";
-    let html = "";
-    for(let i = 1; i<=maxRanking;i++){
-     if (i<=score) {
-           stars+='<i class="fa fa-star checked"></i>';
-    } else {
-        stars += '<i class="fa fa-star"></i>'
-    }
-}
-
-    html = `<span>  ${stars}</span>`
-
-    document.getElementById("rating").innerHTML = html;
-
-}
 //Función que se ejecuta una vez que se haya lanzado el evento de
 //que el documento se encuentra cargado, es decir, se encuentran todos los
 //elementos HTML presentes.
@@ -65,6 +88,7 @@ document.addEventListener("DOMContentLoaded", function(e){
 
             //Muestro las imagenes en forma de galería
             showImagesGallery(product.images);
+            relatedProducts(product.relatedProducts);
             
         }
     });
@@ -122,7 +146,7 @@ document.addEventListener("DOMContentLoaded", function(e){
         if (resultObj.status === "ok"){
             productComments=resultObj.data;
             comentariosJson(productComments);
-            showRaiting();
+            
         
         }
     });
