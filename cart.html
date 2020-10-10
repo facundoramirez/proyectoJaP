@@ -40,40 +40,107 @@
       <a class="py-2 d-none d-md-inline-block" href="categories.html">Categorías</a>
       <a class="py-2 d-none d-md-inline-block" href="products.html">Productos</a>
       <a class="py-2 d-none d-md-inline-block" href="sell.html">Vender</a>
-     <!--- <a class="py-2 d-none d-md-inline-block" href="cart.html">Mi carrito</a> -->
-     <a class="nav-link dropdown-toggle" href="#" id="nombreUsuarioNav" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    </a>
-    <div class="dropdown-menu shadow-lg" aria-labelledby="nombreUsuarioNav">
-      <a class="dropdown-item" href="cart.html"><img src="png/cart-2x.png" alt="cartIcon">  Mi carrito</a>
-      <a class="dropdown-item" href="my-profile.html"> <img src="png/person-2x.png" alt="loginIcon"> Mi perfil</a>
-      <div class="dropdown-divider"></div>
-      <a  class="dropdown-item bg-danger text-white" onclick=borrarUsuario() href="index.html"><img src="img/account-logout-2x.png" alt="logOutIcon">  Cerrar sesión</a>
+      <!--- <a class="py-2 d-none d-md-inline-block" href="cart.html">Mi carrito</a> -->
+      <a class="nav-link dropdown-toggle" href="#" id="nombreUsuarioNav" role="button" data-toggle="dropdown"
+        aria-haspopup="true" aria-expanded="false">
+      </a>
+      <div class="dropdown-menu shadow-lg" aria-labelledby="nombreUsuarioNav">
+        <a class="dropdown-item" href="cart.html"><img src="png/cart-2x.png" alt="cartIcon"> Mi carrito<span
+            class="badge badge-pill badge-danger" id="cartBadge"></span></a>
+        <a class="dropdown-item" href="my-profile.html"> <img src="png/person-2x.png" alt="loginIcon"> Mi perfil</a>
+        <div class="dropdown-divider"></div>
+        <a class="dropdown-item bg-danger text-white" onclick=borrarUsuario() href="index.html"><img
+            src="img/account-logout-2x.png" alt="logOutIcon"> Cerrar sesión</a>
 
-  </div>
-  <!--  <p id="nombreUsuarioNav" class="topright" style="color:white;"></p> -->
-    </div>
   </nav>
-  <div class="container p-5">
-    <div class="alert alert-danger" role="alert" style="position: relative; width:auto; top: 0;">
-      <h4 class="alert-heading">¡A trabajar! :)</h4>
-      <p>Esta sección corresponde a: Entrega 5 (Fecha de entrega: 11/10/2020) y Entrega 6 (Fecha de entrega: 25/10/2020).</p>
-      <hr>
-      <p class="mb-0">Para saber qué debes hacer, fijate en la actividad en CREA correspondiente a esta entrega.</p>
+  <div class="container">
+    <div class="text-center p-4">
+      <h2>Carrito de compras</h2>
     </div>
-  </div>
-  <div id="spinner-wrapper">
-    <div class="lds-ring">
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
+    <!-- tabla de productos-->
+
+    <table class="table table-hover">
+      <thead class="thead-light">
+        <tr>
+          <th scope="col"></th>
+          <th scope="col">Nombre</th>
+          <th scope="col">Costo</th>
+          <th scope="col">Cantidad</th>
+          <th scope="col">Subtotal</th>
+        </tr>
+      </thead>
+      <tbody id="cartProducts">
+      </tbody>
+      <tfoot>
+        <tr>
+          <td style="font-weight: bold;">
+            <h5>Subtotal</h5>
+          </td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td id="subtotalText" style="font-weight: bold;font-size: 19px;"></td>
+
+        </tr>
+        <tr class="bg-info">
+          <td style="font-weight: bold;">
+            <h5>Total</h5>
+          </td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td id="totalText" style="font-weight: bold;font-size: 19px;"></td>
+
+        </tr>
+
+      </tfoot>
+    </table>
+    <!--Envios-->
+    <div class="container">
+      <div class="row">
+        <div class="col"></div>
+        <div class="col-8">
+          <div class="col-6 border border-bottom-0 border-info rounded-top" style="text-align: center;">
+            <div class="row">
+              <div class="col">
+                <h4 class="mb-3">Tipo de envío</h4>
+                <ul style="text-align: left;">
+                  <li class="custom-control custom-radio" >
+                    <input type="radio" id="customRadio1" name="customRadio" class="custom-control-input">
+                    <label class="custom-control-label" for="customRadio1">Premium 2 a 5 días (15%)</label>
+                  </li>
+                  <li class="custom-control custom-radio">
+                    <input type="radio" id="customRadio2" name="customRadio" class="custom-control-input">
+                    <label class="custom-control-label" for="customRadio2">Express 5 a 8 días (7%)</label>
+                  </li>
+                  <li class="custom-control custom-radio">
+                    <input type="radio" id="customRadio3" name="customRadio" class="custom-control-input">
+                    <label class="custom-control-label" for="customRadio3">Standard 12 a 15 días (5%)</label>
+                  </li>
+                </ul>
+
+                <input class="btn btn-primary " type="submit" name="calcularTotal" value="Comprar">
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-  </div>
-  <script src="js/jquery-3.4.1.min.js"></script>
-  <script src="js/bootstrap.bundle.min.js"></script>
-  <script src="js/dropzone.js"></script>
-  <script src="js/init.js"></script>
-  <script src="js/cart.js"></script>
+
+    <div id="spinner-wrapper">
+      <div class="lds-ring">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+    </div>
+    <script src="js/jquery-3.4.1.min.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/dropzone.js"></script>
+    <script src="js/init.js"></script>
+    <script src="js/cart.js"></script>
 </body>
 
 </html>
