@@ -50,7 +50,6 @@ function borrarUsuario(){
 document.addEventListener("DOMContentLoaded", function(e){
   
   document.getElementById("nombreUsuarioNav").innerHTML +=" " + localStorage.getItem("usuario");
-  document.getElementById("alertNombreUsuario").innerHTML +="  " + localStorage.getItem("usuario");
  
 
 });

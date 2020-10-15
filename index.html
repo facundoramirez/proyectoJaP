@@ -1,87 +1,60 @@
 <!DOCTYPE html>
-<!-- saved from url=(0049)https://getbootstrap.com/docs/4.3/examples/album/ -->
+
 <html lang="en">
 
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
-  <title>Ingresar o registrarse - eMercado</title>
+  <title>Ingresar - eMercado</title>
 
   <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/album/">
   <link href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
   <!-- Bootstrap core CSS -->
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/styles.css" rel="stylesheet">
-  <style>
-    html, body{
-      height: 100%;
-    }
-
-    body {
-      display: -ms-flexbox;
-      display: flex;
-      -ms-flex-align: center;
-      align-items: center;
-      padding-top: 40px;
-      padding-bottom: 40px;
-      background-color: #f5f5f5;
-    }
-
-    .signin {
-      width: 100%;
-      max-width: 330px;
-      padding: 15px;
-      margin: auto;
-    }
-  </style>
+  
 </head>
 
-<body class="text-center">
-  
-  <form action="principal.html" method="post">
-    
-    <div class="imgcontainer">
-      <img src="https://img.icons8.com/cotton/2x/login-rounded-right--v2.png" alt="login-icon" class="login-icon">
-    </div>
-  
-    <div class="container">
-      <div class="row">
-      <label for="uname"><b>Nombre de usuario</b></label>
-      <input id=nombreUsuarioNav type="text" placeholder="Ingresar usuario" name="uname" required>
-  
-      <label for="psw"><b>Contraseña</b></label>
-      <input type="password" placeholder="*******" name="psw" required>
-  
-      <button class="btn btn-lg btn-primary btn-block" onclick="setName()" type="submit">Entrar</button>
-      <label>
-        <input type="checkbox" checked="checked" name="remember"> Recordarme
-      </label>
-    </div>
-    
-  
-    
-      <div class="row">
-        <div class="col-7">
-      <button type="button" class="btn btn-danger" style='width:90px; height:45px'>Cancelar</button>
-    </div>
-    <div class="col">
-      <span class="psw float-right">¿Olvidaste tu <a href="#">contraseña?</a></span>
-    </div>
-  </div>
-  </div>
-    
-    <p class="float-left">
-      <a href="principal.html">Continuar sin ingresar</a>
-    </p>
-  </form>
-  
-  <img src="img/login.png" class="float-right"> 
+<html>
 
-  
+    <div class="container-fluid">
+        <div class="row no-gutter">
+          <div class="d-none d-md-flex col-md-4 col-lg-6 bg-image"></div>
+          <div class="col-md-8 col-lg-6">
+            <div class="login d-flex align-items-center py-5">
+              <div class="container">
+                <div class="row">
+                  <div class="col-md-11 col-lg-10 mx-auto">
+                    <h3 class="login-heading mb-4">¡Bienvenido a e-Mercado!</h3>
+                    <form action="principal.html" method="post">
+                      <div class="form-label-group">
+                        <label for="nombreUsuarioNav">Nombre de usuario</label>
+                        <input id=nombreUsuarioNav type="text" placeholder="Ingresar usuario" name="uname" required> 
+                      </div>
+      
+                      <div class="form-label-group">
+                        <input type="password" id="inputPassword" class="form-control" placeholder="****" required>
+                        <label for="inputPassword">Contraseña</label>
+                      </div>
+      
+                      <div class="custom-control custom-checkbox mb-3">
+                        <input type="checkbox" checked="checked" class="custom-control-input" id="customCheck1">
+                        <label class="custom-control-label" for="customCheck1">Recordarme</label>
+                      </div>
+                      <button class="btn btn-lg btn-primary btn-block btn-login text-uppercase font-weight-bold mb-2" onclick="setName()" type="submit">Entrar</button>
+                      <div class="text-center">
+                        <a class="small" href="#">¿Olvidaste tu contarseña?</a></div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
-  <script src="js/init.js"></script>
+<script src="js/init.js"></script>
   <script src="js/login.js"></script>
 </body>
 </html>
-  
