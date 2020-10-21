@@ -15,9 +15,10 @@
   height: 16px;
 }
 
-#alertPrincipal {
+.desaparecerAlert {
   -webkit-animation: cssAnimation 5s forwards; 
   animation: cssAnimation 5s forwards;
+  
 }
 @keyframes cssAnimation {
   0%   {opacity: 1;}

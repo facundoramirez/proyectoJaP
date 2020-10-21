@@ -72,12 +72,12 @@ function mostrarArticulos(articles) { //Crea una fila de tabla por cada articulo
 
 }
 
-function borrarArticulo(){
+function borrarArticulo(){//funcion que se ejecuta al presionar el boton de borrar articulo
     let trash = document.getElementsByClassName("eliminar");
     for (let i=0; i<trash.length; i++){
         trash[i].addEventListener("click",function(){
             var element = document.getElementById("articleRow"+[i]);
-            element.classList.add("d-none");
+            element.classList.add("d-none");//agrega la clase d-none para ocultar la fila del articulo
 
             restaDeElementoBorrado(i);
             clearRadioBtn();
@@ -86,24 +86,27 @@ function borrarArticulo(){
     }
 }
 
-function restaDeElementoBorrado(i){
+
+//XXXXXX
+function restaDeElementoBorrado(i){//INCOMPLETA    devuelve NaN     deberia escribir el resultado de el total - el articulo borrado
     var resta = 0;
     subtotalDelBorrado = document.getElementById("productSubtotal-"+i).value;
     resta = total - subtotalDelBorrado;
     document.getElementById("subtotalText").innerText ="UYU " + resta;
     document.getElementById("totalText").innerText ="UYU " + resta;
 }
+//XXXXXXX
 
 
 function onkeyPress(event) { //funcion de numero de tarjeta de credito en modal
-    numTarjeta.value = numTarjeta.value.replace(/[a-zA-Z]/g, '');
+    numTarjeta.value = numTarjeta.value.replace(/[a-zA-Z]/g, '');//reemplaza las letras por nada
 }
 
 numTarjeta.addEventListener('keypress', onkeyPress);
 numTarjeta.addEventListener('keydown', onkeyPress);
 numTarjeta.addEventListener('keyup', onkeyPress);
 
-function sentMethod() { // Funcion que se ejecuta al presionar el botón de comprar (fuera del modal)
+function sentMethod() { // Funcion que se ejecuta al presionar el primer botón de comprar (fuera del modal)
     const radioBtns = document.querySelectorAll('input[name="payOpt"]');
     let modalTitle = "";
     let selectedValue;
@@ -170,11 +173,11 @@ function ocultarBtnModal(){//funcion que oculta el boton de compra
     element.classList.add("d-none");//agrega la clase que oculta al boton
 }
 
-function paymentMethod(){
+function paymentMethod(){//se ejecuta al presionar el boton de comprar final (en el modal). Elige que funcion ejecutar dependiendo de la eleccion del boton de radio
 
-    if(document.getElementById("cardCheck").checked){
+    if(document.getElementById("cardCheck").checked){//Si el usuario elige pagar con tarjeta   
         return validarTarjeta();
-    }if(document.getElementById("depositCheck").checked){
+    }if(document.getElementById("depositCheck").checked){//Si elige pagar con deposito
        return validarDeposito();
     }
 }
@@ -182,7 +185,7 @@ function paymentMethod(){
 function validarDeposito(){
     var elemento = document.getElementById("numDeposito").value
 
-    if (elemento ==""){
+    if (elemento ==""){//Si el input esta vacio pide que ingrese los datos del deposito
         let dangerAlert = `<div class="alert alert-danger" role="alert">
         ¡Debes ingresar el número de cuenta!
         <button type="button" class="close" data-dismiss="alert" aria-label="Close" style="width: min-content">
@@ -191,7 +194,7 @@ function validarDeposito(){
       </div>`
         document.getElementById("modalAlertRow").innerHTML+= dangerAlert;
          return false
-       }else {
+       }else {//si se ingresaron los datos avisa que se ha realizado la compra
            let succedAlert = `<div class="alert alert-success" role="alert">
            Compra realizada con éxito :)
            <button type="button" class="close" data-dismiss="alert" aria-label="Close" style="width: min-content">
@@ -209,7 +212,7 @@ function validarTarjeta() {//funcion que verifica si cada input de la tarjeta es
     var elemento3 = document.getElementById("anioVenc").value
     var elemento4 = document.getElementById("cvv").value
     
-  if (elemento1 == "" || elemento2 == "" || elemento3 == "" || elemento4 == ""){
+  if (elemento1 == "" || elemento2 == "" || elemento3 == "" || elemento4 == ""){//si un imput esta vacio pide que se ingresen los datos
    let dangerAlert = `<div class="alert alert-danger" role="alert">
    ¡Debes completar todos los campos!
    <button type="button" class="close" data-dismiss="alert" aria-label="Close" style="width: min-content">
@@ -218,7 +221,7 @@ function validarTarjeta() {//funcion que verifica si cada input de la tarjeta es
  </div>`
    document.getElementById("modalAlertRow").innerHTML+= dangerAlert;
     
-  }else {
+  }else {// Si se ingresaron los datos muestra que se ha realizado la compra
       let succedAlert = `<div class="alert alert-success" role="alert">
       Compra realizada con éxito :)
       <button type="button" class="close" data-dismiss="alert" aria-label="Close" style="width: min-content">
@@ -230,19 +233,19 @@ function validarTarjeta() {//funcion que verifica si cada input de la tarjeta es
   }
 }
 
-function validarDireccion(){
+function validarDireccion(){//verifica que esten escrito todos los datos de la direccion
     var elemento1 = document.getElementById("calleInput").value
     var elemento2 = document.getElementById("esquinaInput").value
     var elemento3 = document.getElementById("numInput").value
     var botonSiguiente = document.getElementById("nextModal");
     if (elemento1 == "" || elemento2 == "" || elemento3 == ""){
-        botonSiguiente.disabled = true;
+        botonSiguiente.disabled = true;//si estan vacios deja el boton de siguiente sin poder presionarlo
        }else {
-        botonSiguiente.disabled = false;
+        botonSiguiente.disabled = false;//si estan todos escritos deja presionar el boton de siguiente
        }
 }
 
-function addEventEnvioEnModal(){
+function addEventEnvioEnModal(){//cada vez que detecta un cambio en el imput de address llama a la funcion validarDireccion
     document.querySelectorAll('.addressInput').forEach(item => {
         item.addEventListener('change', event => {
           validarDireccion();
