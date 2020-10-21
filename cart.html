@@ -54,7 +54,7 @@
             src="img/account-logout-2x.png" alt="logOutIcon"> Cerrar sesión</a>
 
   </nav>
-  <div id="alertPrincipal" class="alert alert-warning sticky-top" role="alert" >
+  <div id="alertPrincipal" class="alert alert-warning sticky-top" role="alert">
     <p class="mb-0 alert-heading text-center">Seleccione un tipo de envío para continuar con su compra</p>
   </div>
 
@@ -72,6 +72,7 @@
           <th scope="col">Costo</th>
           <th scope="col">Cantidad</th>
           <th scope="col">Subtotal</th>
+          <th style="font-weight: 500;" scope="col">Eliminar</th>
         </tr>
       </thead>
       <tbody id="cartProducts">
@@ -87,20 +88,23 @@
               <div class="col">
                 <h4 class="mb-3">Tipo de envío</h4>
                 <ul style="text-align: left;">
-                  <li class="custom-control custom-radio" >
-                    <input type="radio" id="premiumOpt" name="payOpt" class="custom-control-input radioevent" onclick="mostrarBtnModal()" value="premium">
+                  <li class="custom-control custom-radio">
+                    <input type="radio" id="premiumOpt" name="payOpt" class="custom-control-input radioevent"
+                      onclick="mostrarBtnModal()" value="premium">
                     <label class="custom-control-label" for="premiumOpt">Premium 2 a 5 días (15%)</label>
                   </li>
                   <li class="custom-control custom-radio">
-                    <input type="radio" id="expressOpt" name="payOpt" class="custom-control-input radioevent" onclick="mostrarBtnModal()" value="express">
+                    <input type="radio" id="expressOpt" name="payOpt" class="custom-control-input radioevent"
+                      onclick="mostrarBtnModal()" value="express">
                     <label class="custom-control-label" for="expressOpt">Express 5 a 8 días (7%)</label>
                   </li>
                   <li class="custom-control custom-radio">
-                    <input type="radio" id="standardOpt" name="payOpt" class="custom-control-input radioevent" onclick="mostrarBtnModal()" value="standard">
+                    <input type="radio" id="standardOpt" name="payOpt" class="custom-control-input radioevent"
+                      onclick="mostrarBtnModal()" value="standard">
                     <label class="custom-control-label" for="standardOpt">Standard 12 a 15 días (5%)</label>
                   </li>
                 </ul>
-                
+
 
               </div>
             </div>
@@ -115,7 +119,7 @@
           <td style="font-weight: bold;">
             <h5>Subtotal</h5>
           </td>
-          <td  id="subtotalText" style="font-weight: bold;font-size: 19px; text-align: right;"></td>
+          <td id="subtotalText" style="font-weight: bold;font-size: 19px; text-align: right;"></td>
 
         </tr>
         <tr class="bg-info">
@@ -130,11 +134,65 @@
 
     <!--Boton de modal-->
     <div id="buyBtn" class="d-none">
-    <input class="btn btn-primary" data-toggle="modal" type="button" name="calcularTotal" onclick=paymentMethod()  data-target="#modalTipoDePago"value="Comprar">
-</div>
+      <input class="btn btn-primary" data-toggle="modal" type="button" name="calcularTotal" onclick=sentMethod()
+        data-target="#modal1Direccion" value="Comprar">
+    </div>
 
-      <!--Modal-->
-    <div class="modal fade" id="modalTipoDePago" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <!-- Modal de direccion de envio -->
+    <div class="modal fade" id="modal1Direccion" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+      aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title"id="AddressTitle"></h5>
+            <button type="button" class="close" style="width: min-content" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="row">
+              <div class="col">
+                <span style="font-size: 20px;font-weight: 500;">Ingrese su dirección</span>
+              </div>
+              <div class="col totalModal" style="text-align: right;"><!-- Total de los productos mas el porcentaje de envio -->
+              </div>
+            </div>
+            <hr>
+            <div class="container">
+              <div class="row">
+                <div class="col-6">
+                  <label for="calleInput">Calle:</label>
+                  <input class="addressInput" id="calleInput" placeholder="Ej: Av 18 de Julio" required>
+                </div>
+                <div class="col-4">
+                  <label for="esquinaInput">Esquina:</label><br>
+                  <input class="addressInput" id="esquinaInput" name="esquinaInput" required>
+                  
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-6">
+                  <label for="numInput">Número:</label><br>
+                  <input class="addressInput" style="width: 50px;" id="numInput" name="numInput" maxlength="4" required>
+                </div>
+                <div class="col-6">
+                </div>
+              </div>
+          </div>
+          </div>
+          
+          <div class="modal-footer">
+            <button type="button" class="btn btn-outline-danger col-2" data-dismiss="modal">Cerrar</button>
+            <button type="button" class="btn btn-primary col-3" id="nextModal"  data-dismiss="modal" data-toggle="modal" data-target="#modal2TipoDePago" disabled>Siguiente</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--Modal de forma de pago-->
+    <div class="modal fade" id="modal2TipoDePago" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+      aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
@@ -146,30 +204,31 @@
           <div class="modal-body">
             <div class="row">
               <div class="col">
-            <div class="custom-control custom-checkbox">
-              <input type="checkbox" class="custom-control-input" name="custom-check" id="cardCheck" checked>
-              <label class="custom-control-label" for="cardCheck">Tarjeta de crédito</label>
-              
+                <div class="custom-control custom-radio">
+                  <input type="radio" class="custom-control-input" name="opcionDePago" id="cardCheck">
+                  <label class="custom-control-label" for="cardCheck">Tarjeta de crédito</label>
+                  <img src="png/credit-card-3x.png">
+                </div>
+              </div>
+              <div class="col" id="totalModal" style="text-align: right;"><!-- Total de los productos mas el porcentaje de envio -->
+              </div>
             </div>
-          </div>
-          <div class="col" id="totalModal" style="text-align: right;"> <!-- Total de los productos mas el porcentaje de envio -->
-          
-          </div>
-          </div>
             <hr>
             <div class="container">
               <div class="row" id="modalAlertRow">
-              <div class="col-6">
-                <label for="numTarjeta">Número de tarjeta:</label>
-                <input id="numTarjeta" maxlength="19" required >
+                <div class="col-6">
+                  <label for="numTarjeta">Número de tarjeta:</label>
+                  <input id="numTarjeta" maxlength="19" required>
+                </div>
+                <div class="col-4">
+                  <label for="mesVenc">Fecha de venc:</label>
+                  <input style="width: 35px; text-align: center;" id="mesVenc" name="mesVenc" maxlength="2"
+                    placeholder="mm" required>/
+                  <input style="width:35px; text-align: center;" id="anioVenc" name="anioVenc" maxlength="2"
+                    placeholder="yy" required>
+                </div>
               </div>
-              <div class="col-4">
-                <label for="mesVenc">Fecha de venc:</label>
-                <input style="width: 35px; text-align: center;" id="mesVenc" name="mesVenc" maxlength="2" placeholder="mm" required>/
-                <input  style="width:35px; text-align: center;" id="anioVenc" name="anioVenc" maxlength="2" placeholder="yy" required>
-              </div>
-              </div>
-              
+
               <div class="row">
                 <div class="col-6">
                   <label for="cvv">CVV:</label><br>
@@ -179,15 +238,16 @@
                 </div>
               </div>
               <hr>
-                <div class="custom-control custom-checkbox row">
-                  <input type="checkbox" class="custom-control-input" name="custom-check" id="depositCheck">
-                  <label class="custom-control-label" for="depositCheck">Depósito bancario</label>
+              <div class="custom-control custom-radio row">
+                <input type="radio" class="custom-control-input" name="opcionDePago" id="depositCheck">
+                <label class="custom-control-label" for="depositCheck">Depósito bancario</label>
+                <input id="numDeposito" maxlength="8" required>
               </div>
             </div>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-outline-danger col-2" data-dismiss="modal">Cerrar</button>
-            <button type="button" onclick="validar()" class="btn btn-primary col-3">Comprar</button>
+            <button type="button" class="btn btn-outline-danger col-2"   data-dismiss="modal" data-toggle="modal" data-target="#modal1Direccion">Atrás</button>
+            <button type="button" onclick="paymentMethod()" class="btn btn-primary col-3">Comprar</button>
           </div>
         </div>
       </div>
