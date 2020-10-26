@@ -19,6 +19,7 @@ function addEventCount() { //funcion que contiene el addeventlistener para detec
     let subtotalArray = document.getElementsByClassName("subtotalArticle");
     for (let i = 0; i < subtotalArray.length; i++) {
         subtotalArray[i].addEventListener("change", function () {//detecta el cambio con "change"
+        
             document.getElementById("productSubtotal-" + i).innerHTML = arrayArticles[i].currency + " " + subtotalArray[i].value * arrayArticles[i].unitCost;//actualiza el subtotal del articulo
             updateAllSubtotal();//actualiza el subtotal del tablefoot
             clearRadioBtn();
@@ -26,7 +27,6 @@ function addEventCount() { //funcion que contiene el addeventlistener para detec
         });
     }
 }
-
 
 
 function updateAllSubtotal() { //funcion para mostrar y onchange actualizar el subtotal del final de pagina 
@@ -52,14 +52,14 @@ function mostrarArticulos(articles) { //Crea una fila de tabla por cada articulo
         productCurrency = articles[i].currency;
 
         htmlContentToAppend += `
-        <tr id="articleRow${[i]}">
+        <tr id="articleRow${[i]}" class="tableRow">
       <td><img src="`+ articles[i].src + `" width="50px"> </td> 
       <td>`+ articles[i].name + `</td>
       <td>`+ articles[i].currency + " " + articles[i].unitCost + `</td>
-      <td><input class="form-control subtotalArticle" style="width: 60px;" type="number" id="productCount-${i}" value="` + articles[i].count + `"min="1"></td>
+      <td><input class="form-control subtotalArticle" onchange=actualizarData(${i}) style="width: 60px;" type="number" id="productCount-${i}" value="` + articles[i].count + `"min="1"></td>
       
-      <td><span id="productSubtotal-${i}" style="font-weight: bold;" value="${articles[i].unitCost * articles[i].count}">${articles[i].currency}${articles[i].unitCost * articles[i].count}</span></td>
-      <td style="padding-left: 1.75rem;"><input class="eliminar" id="eliminar${[i]}" type="image" src="png/delete-3x.png" /> </td>
+      <td><span id="productSubtotal-${i}"  style="font-weight: bold;" value="${articles[i].unitCost * articles[i].count}">${articles[i].currency}${articles[i].unitCost * articles[i].count}</span></td>
+      <td style="padding-left: 1.75rem;"><input class="eliminar" id="eliminar${[i]}" onclick=guardarValorYEliminar(${i}) type="image" src="png/delete-3x.png" /> </td>
     </tr> `
     
     } 
@@ -72,30 +72,49 @@ function mostrarArticulos(articles) { //Crea una fila de tabla por cada articulo
 
 }
 
+function guardarValorYEliminar(i){
+    let elemento = document.getElementById("productSubtotal-"+i);
+    let subBorrado = elemento.getAttribute("value");
+    let sub = 0;
+
+    if (arrayArticles[i].currency === "USD") { //si currency = dolares 
+        sub = subBorrado * 40;//multiplica el costo por 40 y por la cantidad
+    } else {
+        sub = subBorrado;// sino solo multiplica por la cantidad
+    }
+
+    subtotalDelBorrado = sub;
+
+    borrarArticulo();
+}
+
 function borrarArticulo(){//funcion que se ejecuta al presionar el boton de borrar articulo
     let trash = document.getElementsByClassName("eliminar");
+    let element = document.getElementsByClassName("tableRow");
     for (let i=0; i<trash.length; i++){
         trash[i].addEventListener("click",function(){
-            var element = document.getElementById("articleRow"+[i]);
-            element.classList.add("d-none");//agrega la clase d-none para ocultar la fila del articulo
-
+            
             restaDeElementoBorrado(i);
-            clearRadioBtn();
-            ocultarBtnModal();
+            element[i].innerHTML = "";
+            //element.classList.add("d-none");//agrega la clase d-none para ocultar la fila del articulo
+            
         });
     }
+    
+    clearRadioBtn();
+    ocultarBtnModal();
 }
 
 
-//XXXXXX
-function restaDeElementoBorrado(i){//INCOMPLETA    devuelve NaN     deberia escribir el resultado de el total - el articulo borrado
+
+function restaDeElementoBorrado(i){//escribe el resultado de el total - el articulo borrado
     var resta = 0;
-    subtotalDelBorrado = document.getElementById("productSubtotal-"+i).value;
     resta = total - subtotalDelBorrado;
     document.getElementById("subtotalText").innerText ="UYU " + resta;
     document.getElementById("totalText").innerText ="UYU " + resta;
+    total=resta;
 }
-//XXXXXXX
+
 
 
 function onkeyPress(event) { //funcion de numero de tarjeta de credito en modal
